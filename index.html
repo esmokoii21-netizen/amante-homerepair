@@ -333,17 +333,7 @@
                     <div class="form-group">
                         <label for="message">Project Overview</label>
                         <textarea id="message" name="message" rows="4" required placeholder="Briefly describe your site, timeline, and expectations..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Submit Quote Request</button>
-                    <form action="https://formsubmit.co/esmokoii21@gmail.com" method="POST">
-
-					<input type="hidden" name="_captcha" value="false">
-					<input type="hidden" name="_subject" value="New Website Inquiry">
-					<input type="hidden" name="_template" value="table">
-
-					<div class="form-group">
-        ...
-    </div>
+                  
                 </form>
             </div>
         </div>
@@ -402,7 +392,7 @@ form.addEventListener("submit", async function(e){
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-emailjs.init("YOUR_PUBLIC_KEY");
+emailjs.init("SNytIE9eeCKD-STrN");
 
 const form = document.getElementById("quoteForm");
 
@@ -417,8 +407,8 @@ form.addEventListener("submit", function(e) {
     };
 
     emailjs.send(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
+        "service_wksbgnh",
+        "template_e0vonpq",
         templateParams
     ).then(function() {
         alert("Quote request sent successfully!");
