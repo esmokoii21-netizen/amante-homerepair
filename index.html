@@ -312,31 +312,45 @@
             </div>
             
            <div class="card form-card">
-                <h3>Request a Free Quote</h3>
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required placeholder="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="john@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="service-type">Project Type</label>
-                        <select id="service-type" name="service-type">
-                            <option value="commercial">Commercial Construction</option>
-                            <option value="residential">Residential Building</option>
-                            <option value="renovation">Renovations & Remodeling</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Project Overview</label>
-                        <textarea id="message" name="message" rows="4" required placeholder="Briefly describe your site, timeline, and expectations..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Submit Quote Request</button>
-                </form>
-            </div>
+    <h3>Request a Free Quote</h3>
+
+    <form id="quoteForm">
+
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required placeholder="John Doe">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required placeholder="john@example.com">
+        </div>
+
+        <div class="form-group">
+            <label for="service-type">Project Type</label>
+
+            <select id="service-type">
+                <option value="Commercial Construction">Commercial Construction</option>
+                <option value="Residential Building">Residential Building</option>
+                <option value="Renovations & Remodeling">Renovations & Remodeling</option>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label for="message">Project Overview</label>
+
+            <textarea id="message" rows="4" required></textarea>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+            Submit Quote Request
+        </button>
+
+    </form>
+
+	</div>
         </div>
     </section>
 
@@ -370,31 +384,35 @@ document.addEventListener("keydown",function(e){
 <script>
 emailjs.init("SNytIE9eeCKD-STrN");
 
-const form = document.getElementById("quoteForm");
+document.getElementById("quoteForm").addEventListener("submit", function(e) {
 
-form.addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const templateParams = {
-        full_name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        service: document.getElementById("service-type").value,
-        message: document.getElementById("message").value
-    };
+    emailjs.send("service_wksbgnh", "template_e0vonpq", {
 
-    emailjs.send(
-        "service_wksbgnh",
-        "template_e0vonpq",
-        templateParams
-    ).then(function() {
+        full_name: document.getElementById("name").value,
+
+        email: document.getElementById("email").value,
+
+        service: document.getElementById("service-type").value,
+
+        message: document.getElementById("message").value
+
+    })
+    .then(function() {
+
         alert("Quote request sent successfully!");
-        form.reset(); // Auto-clear sa form
-    }).catch(function(error) {
+
+        document.getElementById("quoteForm").reset();
+
+    })
+    .catch(function(error) {
+
         alert("Failed to send!");
+
         console.log(error);
+
     });
+
 });
 </script>
-
-</body>
-</html>
