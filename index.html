@@ -399,7 +399,36 @@ form.addEventListener("submit", async function(e){
     }
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<script>
+emailjs.init("YOUR_PUBLIC_KEY");
+
+const form = document.getElementById("quoteForm");
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const templateParams = {
+        full_name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        service: document.getElementById("service-type").value,
+        message: document.getElementById("message").value
+    };
+
+    emailjs.send(
+        "YOUR_SERVICE_ID",
+        "YOUR_TEMPLATE_ID",
+        templateParams
+    ).then(function() {
+        alert("Quote request sent successfully!");
+        form.reset(); // Auto-clear sa form
+    }).catch(function(error) {
+        alert("Failed to send!");
+        console.log(error);
+    });
+});
+</script>
 
 </body>
 </html>
