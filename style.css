@@ -355,11 +355,12 @@ img {
 
 /* Main Heading */
 .hero-content h1 {
-    font-size: 2.6rem;
-    font-weight: 700;
-    margin-bottom: 20px;
+    max-width: 1000px;   /* palapda ang area sa text */
+    width: 100%;
+    margin: 0 auto;
+    font-size: 4rem;
     line-height: 1.2;
-    
+    text-align: center;
 }
 h1 {
 }
