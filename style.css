@@ -345,20 +345,20 @@ img {
 
 /* Hero Content */
 .hero-content {
-    text-align: center;
-    color: #fff;
-    max-width: 800px;
-    margin: 0 auto;
-    z-index: 2;
     position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
 }
 
 /* Main Heading */
 .hero-content h1 {
-    font-size: 66px;   /* Adjust this */
+     font-size: 66px;   /* Adjust this */
     font-weight: 700;
     margin-bottom: 20px;
     line-height: 1.2;
+}
 }
 
 /* Paragraph */
