@@ -355,10 +355,10 @@ img {
 
 /* Main Heading */
 .hero-content h1 {
-    max-width: 1000px;   /* palapda ang area sa text */
+    max-width: 1000px;
     width: 100%;
-    margin: 0 auto;
-    font-size: 4rem;
+    margin: 20px;
+    font-size: 2rem;
     line-height: 1.2;
     text-align: center;
 }
