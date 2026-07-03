@@ -355,12 +355,16 @@ img {
 
 /* Main Heading */
 .hero-content h1 {
-    max-width: 1000px;
-    width: 100%;
-    margin: 20px;
-    font-size: 2rem;
-    line-height: 1.2;
+    .hero h1 {
+    font-size: 4rem;      /* Dakong text */
+    font-weight: 800;     /* Extra bold */
+    color: #fff;
+    line-height: 1.1;
     text-align: center;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+    max-width: 1000px;
+}
 }
 h1 {
 }
