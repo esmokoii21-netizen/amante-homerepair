@@ -363,6 +363,11 @@
 		</div>
         </div>
     </section>
+	<!-- Image Lightbox -->
+<div id="imageLightbox" class="lightbox">
+    <span class="close-lightbox">&times;</span>
+    <img id="lightboxImg" class="lightbox-content" src="" alt="">
+</div>
 
     <!-- 9. Footer -->
     <footer class="footer">
@@ -425,4 +430,136 @@ document.getElementById("quoteForm").addEventListener("submit", function(e) {
     });
 
 });
+</script>
+	<script>
+const galleryImages = document.querySelectorAll('.gallery-item img');
+const lightbox = document.getElementById('imageLightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const closeBtn = document.querySelector('.close-lightbox');
+
+// Open Image
+galleryImages.forEach(img => {
+    img.addEventListener('click', function () {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = this.src;
+    });
+});
+
+// Close using X
+closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+});
+
+// Close when clicking outside image
+lightbox.addEventListener('click', function(e) {
+    if (e.target !== lightboxImg) {
+        lightbox.style.display = 'none';
+    }
+});
+
+// Close using ESC key
+document.addEventListener('keydown', function(e){
+    if(e.key === "Escape"){
+        lightbox.style.display = 'none';
+    }
+});
+</script>
+	<script>
+
+const images = document.querySelectorAll(".gallery-item img");
+
+const lightbox = document.getElementById("imageLightbox");
+
+const lightboxImg = document.getElementById("lightboxImg");
+
+const closeBtn = document.querySelector(".close-lightbox");
+
+const prevBtn = document.querySelector(".prev");
+
+const nextBtn = document.querySelector(".next");
+
+let currentIndex = 0;
+
+function showImage(index){
+
+    if(index < 0){
+        index = images.length - 1;
+    }
+
+    if(index >= images.length){
+        index = 0;
+    }
+
+    currentIndex = index;
+
+    lightboxImg.src = images[currentIndex].src;
+
+    lightbox.style.display = "flex";
+
+}
+
+images.forEach((img,index)=>{
+
+    img.addEventListener("click",()=>{
+
+        showImage(index);
+
+    });
+
+});
+
+nextBtn.onclick=()=>{
+
+    showImage(currentIndex+1);
+
+}
+
+prevBtn.onclick=()=>{
+
+    showImage(currentIndex-1);
+
+}
+
+closeBtn.onclick=()=>{
+
+    lightbox.style.display="none";
+
+}
+
+lightbox.onclick=function(e){
+
+    if(e.target===lightbox){
+
+        lightbox.style.display="none";
+
+    }
+
+}
+
+document.addEventListener("keydown",function(e){
+
+    if(lightbox.style.display==="flex"){
+
+        if(e.key==="ArrowRight"){
+
+            showImage(currentIndex+1);
+
+        }
+
+        if(e.key==="ArrowLeft"){
+
+            showImage(currentIndex-1);
+
+        }
+
+        if(e.key==="Escape"){
+
+            lightbox.style.display="none";
+
+        }
+
+    }
+
+});
+
 </script>
