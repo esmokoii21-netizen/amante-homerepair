@@ -768,6 +768,18 @@ h1{
     max-width:90%;
     max-height:90%;
     border-radius:8px;
+    animation:zoom .3s ease;
+}
+
+@keyframes zoom{
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
 }
 
 .close-lightbox{
@@ -777,6 +789,7 @@ h1{
     color:#fff;
     font-size:45px;
     cursor:pointer;
+    user-select:none;
 }
 
 .prev,
@@ -784,11 +797,12 @@ h1{
     position:absolute;
     top:50%;
     transform:translateY(-50%);
-    color:#fff;
+    color:white;
     font-size:60px;
+    font-weight:bold;
     cursor:pointer;
-    padding:15px;
     user-select:none;
+    padding:15px;
     transition:.3s;
 }
 
@@ -806,6 +820,11 @@ h1{
 }
 
 @media(max-width:768px){
+
+.lightbox-content{
+    max-width:95%;
+    max-height:80%;
+}
 
 .prev,
 .next{
