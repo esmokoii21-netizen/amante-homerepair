@@ -376,6 +376,10 @@
     <span class="next">&#10095;</span>
 
 </div>
+	<div id="imageModal" class="modal">
+    <span class="close" onclick="closeImage()">&times;</span>
+    <img id="modalImg" class="modal-content">
+</div>
 
     <!-- 9. Footer -->
     <footer class="footer">
@@ -548,6 +552,44 @@ lightbox.addEventListener("touchend",(e)=>{
     if(diff<-50){
 
         showImage(currentIndex-1);
+
+    }
+
+});
+
+</script>
+	
+	<script>
+
+function openImage(img){
+
+    document.getElementById("imageModal").style.display="flex";
+
+    document.getElementById("modalImg").src=img.src;
+
+}
+
+function closeImage(){
+
+    document.getElementById("imageModal").style.display="none";
+
+}
+
+document.getElementById("imageModal").addEventListener("click",function(e){
+
+    if(e.target===this){
+
+        closeImage();
+
+    }
+
+});
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key==="Escape"){
+
+        closeImage();
 
     }
 
