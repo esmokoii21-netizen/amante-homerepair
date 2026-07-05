@@ -364,9 +364,17 @@
         </div>
     </section>
 	<!-- Image Lightbox -->
+<!-- Image Lightbox -->
 <div id="imageLightbox" class="lightbox">
+
     <span class="close-lightbox">&times;</span>
+
+    <span class="prev">&#10094;</span>
+
     <img id="lightboxImg" class="lightbox-content" src="" alt="">
+
+    <span class="next">&#10095;</span>
+
 </div>
 
     <!-- 9. Footer -->
@@ -376,23 +384,7 @@
         </div>
     </footer>
     
-    <script>
-function openImage(img){
-    document.getElementById("imageModal").style.display="flex";
-    document.getElementById("modalImg").src=img.src;
-}
-
-function closeImage(){
-    document.getElementById("imageModal").style.display="none";
-}
-
-document.addEventListener("keydown",function(e){
-    if(e.key==="Escape"){
-        closeImage();
-    }
-});
-</script>
-	
+  
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
@@ -429,39 +421,6 @@ document.getElementById("quoteForm").addEventListener("submit", function(e) {
 
     });
 
-});
-</script>
-	<script>
-const galleryImages = document.querySelectorAll('.gallery-item img');
-const lightbox = document.getElementById('imageLightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const closeBtn = document.querySelector('.close-lightbox');
-
-// Open Image
-galleryImages.forEach(img => {
-    img.addEventListener('click', function () {
-        lightbox.style.display = 'flex';
-        lightboxImg.src = this.src;
-    });
-});
-
-// Close using X
-closeBtn.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-});
-
-// Close when clicking outside image
-lightbox.addEventListener('click', function(e) {
-    if (e.target !== lightboxImg) {
-        lightbox.style.display = 'none';
-    }
-});
-
-// Close using ESC key
-document.addEventListener('keydown', function(e){
-    if(e.key === "Escape"){
-        lightbox.style.display = 'none';
-    }
 });
 </script>
 	<script>
@@ -508,25 +467,29 @@ images.forEach((img,index)=>{
 
 });
 
-nextBtn.onclick=()=>{
-
-    showImage(currentIndex+1);
-
-}
-
-prevBtn.onclick=()=>{
-
-    showImage(currentIndex-1);
-
-}
-
-closeBtn.onclick=()=>{
+closeBtn.addEventListener("click",()=>{
 
     lightbox.style.display="none";
 
-}
+});
 
-lightbox.onclick=function(e){
+prevBtn.addEventListener("click",(e)=>{
+
+    e.stopPropagation();
+
+    showImage(currentIndex-1);
+
+});
+
+nextBtn.addEventListener("click",(e)=>{
+
+    e.stopPropagation();
+
+    showImage(currentIndex+1);
+
+});
+
+lightbox.addEventListener("click",(e)=>{
 
     if(e.target===lightbox){
 
@@ -534,9 +497,9 @@ lightbox.onclick=function(e){
 
     }
 
-}
+});
 
-document.addEventListener("keydown",function(e){
+document.addEventListener("keydown",(e)=>{
 
     if(lightbox.style.display==="flex"){
 
@@ -557,6 +520,34 @@ document.addEventListener("keydown",function(e){
             lightbox.style.display="none";
 
         }
+
+    }
+
+});
+
+let startX=0;
+
+lightbox.addEventListener("touchstart",(e)=>{
+
+    startX=e.changedTouches[0].clientX;
+
+});
+
+lightbox.addEventListener("touchend",(e)=>{
+
+    let endX=e.changedTouches[0].clientX;
+
+    let diff=startX-endX;
+
+    if(diff>50){
+
+        showImage(currentIndex+1);
+
+    }
+
+    if(diff<-50){
+
+        showImage(currentIndex-1);
 
     }
 
